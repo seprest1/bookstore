@@ -13,8 +13,8 @@ function Results () {
             fullWidth
             sx={{mx: '10%'}}>
             {authors && authors.map((author, i) => 
-            <Grid item xs={3}>
-                <Card key={i} sx={{ padding: 2 }}>
+            <Grid key={i} item xs={3}>
+                <Card sx={{ padding: 2 }}>
                     <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: '600' }}>
                     {author}
                     </Typography>
