@@ -13,12 +13,40 @@ import axios from 'axios';
 
 
 //////////////////////// reducers //////////////////////////
+const books = (state = [], action) => {
+  switch (action.type) {
+      case 'SET_BOOKS':
+          return action.payload;
+      default:
+          return state;
+  };
+};
 
+const currentBook = (state = {}, action) => {
+  switch (action.type) {
+      case 'SET_BOOK':
+          return action.payload;
+      default:
+          return state;
+  };
+};
 
 //////////////////////// sagas //////////////////////////
 function* rootSaga() {
+  yield takeEvery('FETCH_BOOKS', fetchBooks);
 };
 
+//fetch list of books from json file
+function* fetchBooks(){
+  try{
+      const books = yield axios.get('/books.json');
+      
+      yield put({ type: 'SET_BOOKS', payload: books.data });
+  }                       
+  catch(error){
+      console.log('fetchBooks failed', error);
+  };
+};
 
 /////////////////////// store //////////////////////////
 
@@ -26,7 +54,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
- 
+      books,
+      currentBook,
   }),
   applyMiddleware(sagaMiddleware, logger),
 );
