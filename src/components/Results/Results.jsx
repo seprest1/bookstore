@@ -16,7 +16,7 @@ function Results(){
         sx={{mx: '10%'}}>
         {results && results.map((book, i) => 
             <Grid key={book.id} item xs={3}>
-                <Card sx={{ padding: 2 }} onClick={() => navigate(`${book.id}`)}>
+                <Card sx={{ padding: 2, cursor: 'pointer' }} onClick={() => navigate(`${book.id}`)}> {/*navigates to details*/}
                     <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: '600' }}>
                     {book.title}
                     </Typography>

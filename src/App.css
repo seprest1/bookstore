@@ -7,5 +7,6 @@
 }
 
 #bookLink{
-    font-style: none;
+    color: black;
+    text-decoration: none;
 }
