@@ -40,8 +40,8 @@ function App() {
         <Search></Search>
           <Routes>
             <Route exact path="/" element={<Authors/>} />
-            <Route exact path="/results" element={<Results/>} />
-            <Route exact path="/details/:id" element={<Details/>} />
+            <Route exact path="/books" element={<Results/>} />
+            <Route exact path="/books/:bookId" element={<Details/>} />
           </Routes>
         </Router> 
       </ThemeProvider>
