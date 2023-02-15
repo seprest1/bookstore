@@ -22,6 +22,15 @@ const books = (state = [], action) => {
   };
 };
 
+const results = (state = [], action) => {
+  switch (action.type) {
+      case 'SET_RESULTS':
+          return action.payload;
+      default:
+          return state;
+  };
+};
+
 const currentBook = (state = {}, action) => {
   switch (action.type) {
       case 'SET_BOOK':
@@ -48,6 +57,7 @@ function* fetchBooks(){
   };
 };
 
+
 /////////////////////// store //////////////////////////
 
 const sagaMiddleware = createSagaMiddleware();
@@ -55,6 +65,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
       books,
+      results,
       currentBook,
   }),
   applyMiddleware(sagaMiddleware, logger),
@@ -64,9 +75,9 @@ sagaMiddleware.run(rootSaga)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
 );
