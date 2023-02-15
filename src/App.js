@@ -21,12 +21,19 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      mode: 'light',
+      type: 'light',
       primary: {
-        main: '#b77d57',
+        main: '#98872e',
       },
       secondary: {
-        main: '#f54500',
+        main: '#f44336',
+      },
+      error: {
+        main: '#d00d59',
+      },
+      background: {
+        default: '#eceae5',
+        paper: '#e4dccc',
       },
     },
   });
