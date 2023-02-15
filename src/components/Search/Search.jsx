@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+
 /// mui
 import { Grid, TextField, InputLabel, MenuItem, FormControl, Select, Button } from '@mui/material';
 
 function Search () {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [search, setSearch] = useState('');
     const books = useSelector (store => store.books);
 
     //searches through json data for authors/titles/years matching
     const getResults = () => {
+        setSearch(''); //clear input
+
         const searchTerms = search.toLowerCase().split(' ').filter(term => term.trim() !== ''); //splits search terms into individual words
-        console.log(searchTerms);
 
         const matches = [];
         searchTerms.forEach(term => 
@@ -23,9 +27,7 @@ function Search () {
                 books.year === Number(term)) //searches through publication year
                 && matches.push(book)));
 
-        const results = matches.filter(book => book.language.toLowerCase().includes(filter)); //if user wants to filter by language
-        dispatch({ type: 'SET_RESULTS', payload: results}); //sends results to redux store
-        setSearch(''); //clear input
+        filterResults(matches, filter); //filters if language selected
     };
 
     //allows user to press 'enter' to activate search
@@ -37,16 +39,18 @@ function Search () {
 
     //filters json data for specific language without searching
     const [filter, setFilter] = useState('');
-    const results = useSelector (store => store.results);
-    const filterResults = (e) => {
+    const changeFilter = (e) => {
+        console.log('language is:', e.target.value);
         setFilter(e.target.value);
-        console.log(e.target.value);
-        console.log(results);
+        filterResults(books, e.target.value);
+    };
 
-        if (results.length === 0){
-            const languageMatches = books.filter(book => book.language.toLowerCase().includes(e.target.value));
-            dispatch({ type: 'SET_RESULTS', payload: languageMatches});
-        }
+    const filterResults = (arrayToFilter, language) => {
+        console.log('filter is:', language);
+        const results = arrayToFilter.filter(book => book.language.toLowerCase().includes(language) && book);
+        console.log('results are:', results);
+        dispatch({ type: 'SET_RESULTS', payload: results}); //sends results to redux store
+        navigate('/results'); //goes to result page
     };
 
     const languages = ['English', 'Italian', 'French', 'Spanish', 'German', 'Portuguese', 'Russian', 'Greek', 'Norwegian', 'Japanese', 'Sanskrit', 'Icelandic', 'Chinese', 'Swedish', 'Persian', 'Arabic', 'Latin'];
@@ -74,7 +78,7 @@ function Search () {
                         value={filter}
                         label="English"
                         color="secondary"
-                        onChange={filterResults}
+                        onChange={changeFilter}
                         size="small"
                         >                  //creates select options from language array
                             {languages.map(language =>  <MenuItem value={language.toLowerCase()}>{language}</MenuItem>)}
