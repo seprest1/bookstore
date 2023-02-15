@@ -27,7 +27,7 @@ function Authors () {
                 <Card onClick={() => booksByAuthor(author)}>
                     <CardMedia
                         sx={{ height: 140 }}
-                        image="https://momentmag.com/wp-content/uploads/2019/06/Piercy.jpg" //would be image link if contained in data
+                        image="https://s3.amazonaws.com/cdn.bunkhistory.org/derivatives/rectangle_super/images/2019-09/$2y$10$hIzcgFZ69aEV8mywolt5Hui2vaFiePlAHLUj5bbQISO94M3kqAzBy/180124_ursula_seated_70s_banner.jpg" //would be image link if contained in data
                         title="green iguana"
                     />
                     <CardContent sx={{ padding: 1 }}>
