@@ -5,3 +5,8 @@
     width: 100vw;
     background-color: whitesmoke;
 }
+
+#bookLink{
+    color: black;
+    text-decoration: none;
+}

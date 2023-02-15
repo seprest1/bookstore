@@ -50,7 +50,7 @@ function Search () {
         const results = arrayToFilter.filter(book => book.language.toLowerCase().includes(language) && book);
         console.log('results are:', results);
         dispatch({ type: 'SET_RESULTS', payload: results}); //sends results to redux store
-        navigate('/results'); //goes to result page
+        navigate('/books'); //goes to result page
     };
 
     const languages = ['English', 'Italian', 'French', 'Spanish', 'German', 'Portuguese', 'Russian', 'Greek', 'Norwegian', 'Japanese', 'Sanskrit', 'Icelandic', 'Chinese', 'Swedish', 'Persian', 'Arabic', 'Latin'];

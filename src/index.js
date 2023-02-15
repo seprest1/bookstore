@@ -31,15 +31,6 @@ const results = (state = [], action) => {
   };
 };
 
-const currentBook = (state = {}, action) => {
-  switch (action.type) {
-      case 'SET_BOOK':
-          return action.payload;
-      default:
-          return state;
-  };
-};
-
 //////////////////////// sagas //////////////////////////
 function* rootSaga() {
   yield takeEvery('FETCH_BOOKS', fetchBooks);
@@ -48,9 +39,11 @@ function* rootSaga() {
 //fetch list of books from json file
 function* fetchBooks(){
   try{
-      const books = yield axios.get('/books.json');
+      const response = yield axios.get('/books.json');
       
-      yield put({ type: 'SET_BOOKS', payload: books.data });
+      const books = response.data.map((book, i) => {return {id: i + 1, ...book}}); //gives an ID to each book
+
+      yield put({ type: 'SET_BOOKS', payload: books });
   }                       
   catch(error){
       console.log('fetchBooks failed', error);
@@ -66,7 +59,6 @@ const store = createStore(
   combineReducers({
       books,
       results,
-      currentBook,
   }),
   applyMiddleware(sagaMiddleware, logger),
 );
