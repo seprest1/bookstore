@@ -6,9 +6,9 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 function Header () {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed">
+            <AppBar position="static" xs={{ height: '5%', width: '100%' }}>
                 <Toolbar>
-                <MenuBookIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 2,  fontSize: '2rem'}}/>
+                <MenuBookIcon sx={{ display:'flex' , mr: 2,  fontSize: {xs: '1.5rem', md: '2rem'} }}/>
                 <Typography
                     variant="h6"
                     noWrap
@@ -16,10 +16,10 @@ function Header () {
                     href="/"
                     sx={{
                     mr: 2,
-                    display: { xs: 'none', md: 'flex' },
-                    fontFamily: 'monospace',
-                    fontWeight: 500,
-                    letterSpacing: '.3rem',
+                    display: {  md: 'flex' },
+                    fontSize: {xs: '1rem', md: '1.5rem'},
+                    fontWeight: 100,
+                    letterSpacing: '.25rem',
                     color: 'whitesmoke',
                     textDecoration: 'none',
                     }}

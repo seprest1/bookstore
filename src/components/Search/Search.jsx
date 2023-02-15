@@ -56,8 +56,12 @@ function Search () {
     const languages = ['English', 'Italian', 'French', 'Spanish', 'German', 'Portuguese', 'Russian', 'Greek', 'Norwegian', 'Japanese', 'Sanskrit', 'Icelandic', 'Chinese', 'Swedish', 'Persian', 'Arabic', 'Latin'];
 
     return (
-        <Grid container id="search" spacing={2} sx={{display: 'flex', flexDirection: 'row', margin: '10% 0 0 0', gap: '2%', justifyContent: 'center'}}>
-            <Grid item xs={5}>
+        <Grid container id="search" 
+            spacing={2} 
+            justifyContent='center'
+            columns={{ xs: 4, sm: 8, md: 12, l: 12}}
+            sx={{ my: 2 }}>
+            <Grid item xs={3} md={4}>
                 <TextField 
                     fullWidth
                     label="Search..." 
@@ -71,21 +75,20 @@ function Search () {
                 </TextField>
             </Grid>
             <Grid item xs={2}>
-                <FormControl fullWidth sx={{ minWidth: 120 }}>
-                    <InputLabel sx={{pb: 2}}>Filter</InputLabel>
+                <FormControl size="small" sx={{ minWidth: 180 }}>
+                    <InputLabel>Language</InputLabel>
                         <Select
                         id="select"
                         value={filter}
                         label="English"
                         color="secondary"
                         onChange={changeFilter}
-                        size="small"
                         >                  //creates select options from language array
                             {languages.map(language =>  <MenuItem value={language.toLowerCase()}>{language}</MenuItem>)}
                         </Select>
                 </FormControl>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={1}>
                 <Button variant="contained" 
                         color="secondary" 
                         onClick={getResults}
