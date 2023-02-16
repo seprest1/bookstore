@@ -24,7 +24,7 @@ function Header () {
                     textDecoration: 'none',
                     }}
                     >
-                    EPCARBON BOOKS
+                    ENIGMA BOOKS
                 </Typography>
                 </Toolbar>
             </AppBar>
